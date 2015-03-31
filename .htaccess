@@ -1,0 +1,8 @@
+# Disable directory browsing
+Options All -Indexes
+
+# Prevent folder listing
+#IndexIgnore *
+
+# Set the default file for indexes
+DirectoryIndex generate_html.php
