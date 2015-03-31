@@ -1,38 +1,32 @@
 <?php
 /**
- * Philips Sonicare Brush Microsite - Born05
  *
- * Brush Object
+ * Chamonix Flickr Gallery
  *
- * This is the class off a brush
+ * Flickr Image Object
  *
- * @author    Sergio Paulino <sergio@netants.nl>
- * @link      http://www.born05.nl
- * @copyright Copyright (c) Born05
+ * This is the class for an image
+ *
+ * @author    Sergio Paulino <me@sergiopaulino.net>
+ * @link      http://www.sergiopaulino.net
+ * @copyright Copyright (c) Sérgio Paulino
  * @license   All rights reserved
  */
 
-class BrushModel {
+class FlickrImage {
 
-    public $id;
-    public $name;
+    public $title;
+    public $link;
     public $image;
-    public $preferred;
-    public $compatibleBrushHeads;
+    public $author;
 
-    public function __construct($json) {
-        $brush = json_decode($json);
+    public function __construct($data) {
 
-        $this->id = $brush->id;
-        $this->name = $brush->name;
-        $this->image = $brush->image;
-        $this->preferred = false;
+        $this->title = $data->title;
+        $this->link = $data->link[0]->attributes("", false)->href;
+        $this->image = $data->link[1]->attributes("", false)->href;
+        $this->author = $data->author->name;
 
-        if ( count($brush->compatibleBrushHeads ) > 0 ) {
-            $this->compatibleBrushHeads = $brush->compatibleBrushHeads;
-        } else {
-            unset($this->compatibleBrushHeads);
-        }
     }
 
 }
